@@ -1,0 +1,14 @@
+on:
+ push:
+  branches:
+   - main
+
+jobs:
+ build_and_deploy:
+  runs-on: [ ubuntu-lastest ]
+  steps:
+   - name : Create Docker Image
+     run : |
+      docker build -t test-app .
+   
+     
