@@ -5,7 +5,7 @@ on:
 
 jobs:
  build_and_deploy:
-  runs-on: [ ubuntu-lastest ]
+  runs-on: ubuntu-latest
   steps:
    - name : Create Docker Image
      run : |
