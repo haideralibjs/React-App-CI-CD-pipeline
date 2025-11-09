@@ -28,5 +28,11 @@ jobs:
       echo "${{ secrets.BASE64_KEY }}" >> key.pem.b64
       base64 --decode key.pem.b64 > key.pem
       chmod 600 key.pem   
-       ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }}
+      ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }}
+      docker stop react-app || true
+      docker rm react-app || true
+      docker pull ${{ secrets.DOCKER_USERNAME }}/react-app:latest
+      docker run -d --name react-app --restart unless-stopped -p 80:80 ${{ secrets.DOCKER_USERNAME }}/react-app:latest
+      docker image prune -f
+      docker logout
      
