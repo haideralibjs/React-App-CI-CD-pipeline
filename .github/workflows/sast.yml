@@ -22,6 +22,17 @@ jobs:
     with:
       command: test
 
+
+ # Step 2: Update Vulnerable Package ( remember cause package conflicts)
+  - name: Automatically fix vulnerabilities
+    uses: snyk/actions/node@master
+    continue-on-error: true
+    env:
+     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    with:
+     command: fix
+
+
   # Step 3: Snyk Static Code Analysis (SAST)
   # This analyzes your application's source code for security flaws
   # such as XSS, SQL injection, insecure data handling, etc
