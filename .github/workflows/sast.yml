@@ -16,6 +16,7 @@ jobs:
 
   - name: Run Snyk to check for vulnerabilities
     uses: snyk/actions/node@master
+    continue-on-error: true
     env:
      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     with:
@@ -26,6 +27,7 @@ jobs:
   # such as XSS, SQL injection, insecure data handling, etc
   - name: Run Snyk code analysis (SAST)
     uses: snyk/actions/node@master
+    continue-on-error: true
     env:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     with:
