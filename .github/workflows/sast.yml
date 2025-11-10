@@ -35,7 +35,7 @@ jobs:
 
   # Step 3: Snyk Static Code Analysis (SAST)
   # This analyzes your application's source code for security flaws
-  # such as XSS, SQL injection, insecure data handling, etc
+  # such as XSS, SQL injection, insecure data handling
   - name: Run Snyk code analysis (SAST)
     uses: snyk/actions/node@master
     continue-on-error: true
