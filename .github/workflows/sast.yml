@@ -9,6 +9,10 @@ jobs:
   steps:
   - name: Checkout Code
     uses: actions/checkout@v5
+ 
+  # Step 2: Snyk Dependency Vulnerability Scanning (SCA)  
+  # This checks for known vulnerabilities in open-source dependencies
+  # defined in package.json / package-lock.json (e.g., npm, yarn, etc.)
 
   - name: Run Snyk to check for vulnerabilities
     uses: snyk/actions/node@master
@@ -16,4 +20,14 @@ jobs:
      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
     with:
       command: test
+
+  # Step 3: Snyk Static Code Analysis (SAST)
+  # This analyzes your application's source code for security flaws
+  # such as XSS, SQL injection, insecure data handling, etc
+  - name: Run Snyk code analysis (SAST)
+    uses: snyk/actions/node@master
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    with:
+      command: code test
      
